@@ -4,14 +4,14 @@ import { cva } from 'cva';
 
 
 const buttonVariants = {
-  primary: "bg-primary text-primary-foreground hover:bg-secondary hover:text-secondary-foreground",
-  secondary: "bg-secondary text-secondary-foreground hover:bg-neutral-600",
+  primary: "p-3 bg-primary text-primary-foreground hover:bg-secondary hover:text-secondary-foreground",
+  secondary: "p-3 bg-secondary text-secondary-foreground hover:bg-neutral-600",
   inline: "p-0 text-primary hover:text-secondary"
 }
 
 
 const buttonVariantClass = cva(
-  "inline-flex items-center justify-center p-3 font-medium transition-colors disabled:opacity-60",
+  "inline-flex items-center justify-center font-medium transition-colors disabled:opacity-60",
   {
     variants: {
       variant: buttonVariants,
