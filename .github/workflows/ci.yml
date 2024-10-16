@@ -36,7 +36,8 @@ jobs:
       # - run: npx nx-cloud record -- echo Hello World
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: npx nx affected -t test build
-        
+      
+      # Necessário fazer upload como artifact para fazer upload 
       - name: Upload as artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -54,7 +55,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/deploy-pages@v4
 
