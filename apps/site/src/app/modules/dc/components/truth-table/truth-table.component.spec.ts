@@ -12,7 +12,9 @@ describe('ThuthTableComponent', () => {
 
     fixture = TestBed.createComponent(ThuthTableComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.componentRef.setInput('table', [[], []])
+    
+    await fixture.whenStable();
   });
 
   it('should create', () => {

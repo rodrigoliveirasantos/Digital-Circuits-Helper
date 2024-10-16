@@ -12,7 +12,9 @@ describe('TruthTableFilterComponent', () => {
 
     fixture = TestBed.createComponent(TruthTableFilterComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.componentRef.setInput('names', []);
+
+    await fixture.whenStable();
   });
 
   it('should create', () => {
