@@ -9,6 +9,9 @@ import { AlertModule } from './modules/ui/components/alert/alert.component';
 import { SyntaxGuideComponent } from "./modules/help/components/syntax-guide/syntax-guide.component";
 import { ThuthTableComponent } from "./modules/dc/components/truth-table/truth-table.component";
 import storedSignal from '../helpers/state/state';
+import { VirtualKeyboardOutletComponent } from './modules/virtual-keyboard/components/virtual-keyboard-outlet/virtual-keyboard-outlet.component';
+import { VirtualKeyboardComponent } from "./modules/virtual-keyboard/components/virtual-keyboard/virtual-keyboard.component";
+import { VirtualKeyboardDirective } from './modules/virtual-keyboard/directives/virtual-keyboard/virtual-keyboard.directive';
 
 
 @Component({
@@ -21,8 +24,11 @@ import storedSignal from '../helpers/state/state';
     InputComponent,
     AlertModule,
     SyntaxGuideComponent,
-    ThuthTableComponent
-  ],
+    ThuthTableComponent,
+    VirtualKeyboardOutletComponent,
+    VirtualKeyboardComponent,
+    VirtualKeyboardDirective
+],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

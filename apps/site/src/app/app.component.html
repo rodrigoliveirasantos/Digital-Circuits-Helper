@@ -1,3 +1,8 @@
+
+<app-virtual-keyboard name="Rodrigo">
+  AA
+</app-virtual-keyboard>
+
 <main class="py-9 container mx-auto">
   <section>
     <form [formGroup]="expressionForm" (ngSubmit)="handleFormSubmit()">
@@ -8,6 +13,7 @@
       <div class="flex items-center space-x-2">
         <input
           app-input
+          appVirtualKeyboard="Rodrigo"
           id="expression"
           name="expression"
           formControlName="expression"
@@ -48,3 +54,5 @@
     </section>
   }
 </main>
+
+<app-virtual-keyboard-outlet />
