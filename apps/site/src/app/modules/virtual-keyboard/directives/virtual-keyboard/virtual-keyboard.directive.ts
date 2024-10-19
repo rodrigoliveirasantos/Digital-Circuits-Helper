@@ -2,6 +2,8 @@ import { Directive, ElementRef, HostListener, inject, input } from "@angular/cor
 import { VirtualKeyboardComponent } from "../../components/virtual-keyboard/virtual-keyboard.component";
 import { FormControlDirective, FormControlName } from "@angular/forms";
 import { VirtualKeyboardService } from "../../services/virtual-keyboard/virtual-keyboard.service";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { filter } from "rxjs";
 
 @Directive({
   standalone: true,
@@ -21,6 +23,13 @@ export class VirtualKeyboardDirective {
     }
   });
 
+  keyPressed$ = this._virtualKeyboardService.keyPressed$.pipe(
+    filter(() => { 
+      return this.isKeyboardActive()
+    }),
+    takeUntilDestroyed()
+  );
+
   get input() {
     return this.elementRef.nativeElement;
   }
@@ -29,6 +38,13 @@ export class VirtualKeyboardDirective {
     return this.ngControl?.control;
   } 
   
+  constructor() {
+    this.keyPressed$.subscribe((value) => {
+      this.appendValue(value);
+      this.input.focus();
+    })
+  }
+
   setValue(value: string) {
     this.input.value = value;
     this.input.dispatchEvent(new InputEvent('change', { 
@@ -37,14 +53,48 @@ export class VirtualKeyboardDirective {
     this.formControl?.setValue(value);
   }
 
+  getValue() {
+    return this.input.value;
+  }
+
+  appendValue(value: string) {
+    this.setValue(this.getValue() + value);
+  }
+
+  isKeyboardActive() {
+    return this._virtualKeyboardService.selectedKeyboard() === this.name();
+  }
+
+  isClickFromVirtualKeyboard(target: HTMLElement) {
+    const keyboardKeyTagName = 'APP-VIRTUAL-KEYBOARD-KEY';
+    let parent = target.parentElement;
+    
+    while (parent) {
+      if (parent.tagName === keyboardKeyTagName) {
+        return true;
+      }
+
+      parent = parent.parentElement;
+    }
+
+    console.log(parent)
+    return false;
+  }
+
   @HostListener('focus')
   handleFocus() {
     this._virtualKeyboardService.setKeyboard(this.name());
   }
-
-  @HostListener('blur')
-  handleBlur() {
-    this._virtualKeyboardService.closeKeyboard();
+  
+  @HostListener('document:focusin', [ '$event.target' ])
+  handleBlur(target: EventTarget) {
+    if (
+      this.isKeyboardActive() && 
+      target !== this.input && 
+      !this.isClickFromVirtualKeyboard(target as HTMLElement)
+    ) {
+      this._virtualKeyboardService.closeKeyboard();
+    }
   }
 
   private _injectNgControl() {

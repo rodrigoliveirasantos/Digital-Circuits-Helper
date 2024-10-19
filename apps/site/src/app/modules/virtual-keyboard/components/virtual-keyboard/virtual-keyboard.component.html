@@ -1,6 +1,6 @@
 <ng-template #template>
-  <div class="virtual-keyboard fixed bottom-16 left-1/2 -translate-x-1/2">
-    <ng-content />
+  <div class="virtual-keyboard flex flex-wrap justify-center gap-2 fixed bottom-16 left-1/2 -translate-x-1/2">
+    <ng-content select="app-virtual-keyboard-key" />
   </div>
 </ng-template>
 

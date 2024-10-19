@@ -12,6 +12,7 @@ import storedSignal from '../helpers/state/state';
 import { VirtualKeyboardOutletComponent } from './modules/virtual-keyboard/components/virtual-keyboard-outlet/virtual-keyboard-outlet.component';
 import { VirtualKeyboardComponent } from "./modules/virtual-keyboard/components/virtual-keyboard/virtual-keyboard.component";
 import { VirtualKeyboardDirective } from './modules/virtual-keyboard/directives/virtual-keyboard/virtual-keyboard.directive';
+import { VirtualKeyboardKeyComponent } from './modules/virtual-keyboard/components/virtual-keyboard-key/virtual-keyboard-key.component';
 
 
 @Component({
@@ -27,7 +28,8 @@ import { VirtualKeyboardDirective } from './modules/virtual-keyboard/directives/
     ThuthTableComponent,
     VirtualKeyboardOutletComponent,
     VirtualKeyboardComponent,
-    VirtualKeyboardDirective
+    VirtualKeyboardDirective,
+    VirtualKeyboardKeyComponent
 ],
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -1,4 +1,5 @@
 import { computed, Injectable, signal, TemplateRef } from "@angular/core";
+import { Subject } from "rxjs";
 
 
 @Injectable({
@@ -12,11 +13,14 @@ export class VirtualKeyboardService {
   readonly registeredKeyboards = new Map<string, TemplateRef<unknown>>();
 
   private _selectedKeyboard = signal<string>('');
+  private _keyPressed$ = new Subject<string>();
 
   selectedKeyboard = this._selectedKeyboard.asReadonly();
   selectedKeyboardTemplate = computed(() => {
     return this.registeredKeyboards.get(this._selectedKeyboard())
-  })
+  });
+  
+  keyPressed$ = this._keyPressed$.asObservable();
 
   register(name: string, templateRef: TemplateRef<unknown>) {
     if (this.registeredKeyboards.has(name)) {
@@ -24,14 +28,6 @@ export class VirtualKeyboardService {
     }
 
     this.registeredKeyboards.set(name, templateRef);
-  }
-
-  unregister(name: string) {
-    if (this.selectedKeyboard() === name) {
-      this.closeKeyboard();
-    }
-
-    this.registeredKeyboards.delete(name);
   }
 
   setKeyboard(name: string) {
@@ -42,6 +38,18 @@ export class VirtualKeyboardService {
     this._selectedKeyboard.set(name);
   }
   
+  pressKey(key: string) {
+    this._keyPressed$.next(key);
+  }
+
+  unregister(name: string) {
+    if (this.selectedKeyboard() === name) {
+      this.closeKeyboard();
+    }
+
+    this.registeredKeyboards.delete(name);
+  }
+
   closeKeyboard() {
     this.setKeyboard('');
   }
