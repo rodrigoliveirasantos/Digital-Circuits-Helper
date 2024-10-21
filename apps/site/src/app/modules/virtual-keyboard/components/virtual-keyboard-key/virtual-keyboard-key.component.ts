@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { VirtualKeyboardService } from '../../services/virtual-keyboard/virtual-keyboard.service';
 
 @Component({
-  selector: 'app-virtual-keyboard-key',
+  selector: 'app-virtual-keyboard > app-virtual-keyboard-key',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './virtual-keyboard-key.component.html',
