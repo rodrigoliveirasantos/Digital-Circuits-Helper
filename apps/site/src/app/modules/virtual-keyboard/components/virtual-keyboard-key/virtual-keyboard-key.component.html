@@ -1,3 +1,9 @@
-<button (click)="handleClick()">
-  <ng-content />
-</button>
+<li>
+  <button 
+    class="p-2 rounded-md bg-neutral-100/10 text-secondary-foreground transition-[background-color,_transform] hover:bg-neutral-100/15 active:bg-neutral-100/5 active:translate-y-0.5"
+    (click)="handleClick()"
+  >
+    <ng-content />
+  </button>
+</li>
+

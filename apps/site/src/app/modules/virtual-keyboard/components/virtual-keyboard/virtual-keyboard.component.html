@@ -1,6 +1,11 @@
 <ng-template #template>
-  <div class="virtual-keyboard flex flex-wrap justify-center gap-2 fixed bottom-16 left-1/2 -translate-x-1/2">
-    <ng-content select="app-virtual-keyboard-key" />
+  <div class="container flex justify-center fixed bottom-16 left-1/2 -translate-x-1/2">
+    <menu 
+      [@enterLeave]
+      class="flex flex-wrap justify-center gap-2 p-4 bg-secondary rounded-lg shadow-md"
+    >
+      <ng-content select="app-virtual-keyboard-key" />
+    </menu>
   </div>
 </ng-template>
 
