@@ -65,10 +65,9 @@ export class VirtualKeyboardDirective {
     return this._virtualKeyboardService.selectedKeyboard() === this.name();
   }
 
-  isClickFromVirtualKeyboard(target: HTMLElement) {
+  isInVirtualKeyboard(target: Element) {
     const keyboardKeyTagName = 'APP-VIRTUAL-KEYBOARD-KEY';
     let parent = target.parentElement;
-    
     while (parent) {
       if (parent.tagName === keyboardKeyTagName) {
         return true;
@@ -77,7 +76,6 @@ export class VirtualKeyboardDirective {
       parent = parent.parentElement;
     }
 
-    console.log(parent)
     return false;
   }
 
@@ -86,12 +84,11 @@ export class VirtualKeyboardDirective {
     this._virtualKeyboardService.setKeyboard(this.name());
   }
   
-  @HostListener('document:focusin', [ '$event.target' ])
-  handleBlur(target: EventTarget) {
+  @HostListener('document:focusout', [ '$event' ])
+  handleBlur(event: FocusEvent) {
     if (
       this.isKeyboardActive() && 
-      target !== this.input && 
-      !this.isClickFromVirtualKeyboard(target as HTMLElement)
+      !(event.relatedTarget && this.isInVirtualKeyboard(event.relatedTarget as Element))
     ) {
       this._virtualKeyboardService.closeKeyboard();
     }
