@@ -1,0 +1,11 @@
+
+<app-virtual-keyboard name="operators">
+  @for (key of keys; track key[0]) {
+    <app-virtual-keyboard-key [value]="key[0]">
+      {{ key[1] }} 
+      @if (key[0] !== key[1]) {
+        <div class="text-sm opacity-60">{{ key[0] }}</div>
+      }
+    </app-virtual-keyboard-key>
+  }
+</app-virtual-keyboard>

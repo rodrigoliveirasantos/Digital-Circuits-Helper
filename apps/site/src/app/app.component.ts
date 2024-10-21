@@ -10,10 +10,8 @@ import { SyntaxGuideComponent } from "./modules/help/components/syntax-guide/syn
 import { ThuthTableComponent } from "./modules/dc/components/truth-table/truth-table.component";
 import storedSignal from '../helpers/state/state';
 import { VirtualKeyboardOutletComponent } from './modules/virtual-keyboard/components/virtual-keyboard-outlet/virtual-keyboard-outlet.component';
-import { VirtualKeyboardComponent } from "./modules/virtual-keyboard/components/virtual-keyboard/virtual-keyboard.component";
 import { VirtualKeyboardDirective } from './modules/virtual-keyboard/directives/virtual-keyboard/virtual-keyboard.directive';
-import { VirtualKeyboardKeyComponent } from './modules/virtual-keyboard/components/virtual-keyboard-key/virtual-keyboard-key.component';
-
+import { OperatorsKeyboardComponent } from "./modules/dc/components/operators-keyboard/operators-keyboard.component";
 
 @Component({
   standalone: true,
@@ -27,9 +25,8 @@ import { VirtualKeyboardKeyComponent } from './modules/virtual-keyboard/componen
     SyntaxGuideComponent,
     ThuthTableComponent,
     VirtualKeyboardOutletComponent,
-    VirtualKeyboardComponent,
     VirtualKeyboardDirective,
-    VirtualKeyboardKeyComponent
+    OperatorsKeyboardComponent
 ],
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -1,10 +1,4 @@
 
-<app-virtual-keyboard name="Rodrigo">
-  <app-virtual-keyboard-key value=".">AND</app-virtual-keyboard-key>
-  <app-virtual-keyboard-key value="+">OR</app-virtual-keyboard-key>
-  <app-virtual-keyboard-key value="~">NOT</app-virtual-keyboard-key>
-  <app-virtual-keyboard-key value="^">XOR</app-virtual-keyboard-key>
-</app-virtual-keyboard>
 
 <main class="py-9 container mx-auto">
   <section>
@@ -16,7 +10,7 @@
       <div class="flex items-center space-x-2">
         <input
           app-input
-          appVirtualKeyboard="Rodrigo"
+          appVirtualKeyboard="operators"
           id="expression"
           name="expression"
           formControlName="expression"
@@ -58,4 +52,5 @@
   }
 </main>
 
+<app-operators-keyboard />
 <app-virtual-keyboard-outlet />
